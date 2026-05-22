@@ -1,0 +1,7 @@
+Dataset/
+data/
+results/
+__pycache__/
+*.pyc
+venv/
+.env

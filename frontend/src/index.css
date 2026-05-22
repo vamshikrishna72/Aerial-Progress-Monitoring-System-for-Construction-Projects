@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global reset & base ────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0a0f1e;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f1629; }
+::-webkit-scrollbar-thumb { background: #253362; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #27a5f9; }
+
+/* ── Selection ──────────────────────────────────────────── */
+::selection { background: rgba(39,165,249,0.3); color: #fff; }
+
+/* ── Glass card ─────────────────────────────────────────── */
+@layer components {
+  .glass {
+    @apply bg-surface-800/70 backdrop-blur-xl border border-white/[0.06] rounded-2xl;
+  }
+  .glass-sm {
+    @apply bg-surface-700/60 backdrop-blur-md border border-white/[0.06] rounded-xl;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 via-brand-300 to-cyan-300 bg-clip-text text-transparent;
+  }
+  .gradient-text-warm {
+    @apply bg-gradient-to-r from-accent-400 via-accent-500 to-red-400 bg-clip-text text-transparent;
+  }
+
+  /* Pill badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-blue   { @apply badge bg-brand-600/30 text-brand-300 border border-brand-500/30; }
+  .badge-green  { @apply badge bg-emerald-600/30 text-emerald-300 border border-emerald-500/30; }
+  .badge-amber  { @apply badge bg-amber-600/30 text-amber-300 border border-amber-500/30; }
+  .badge-red    { @apply badge bg-red-600/30 text-red-300 border border-red-500/30; }
+  .badge-purple { @apply badge bg-purple-600/30 text-purple-300 border border-purple-500/30; }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm
+           bg-gradient-to-r from-brand-600 to-brand-500 text-white
+           hover:from-brand-500 hover:to-brand-400
+           active:scale-95 transition-all duration-200
+           shadow-lg shadow-brand-900/50 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm
+           bg-surface-600 border border-white/10 text-slate-300
+           hover:bg-surface-500 hover:text-white
+           active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-accent {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm
+           bg-gradient-to-r from-accent-600 to-accent-500 text-white
+           hover:from-accent-500 hover:to-amber-400
+           active:scale-95 transition-all duration-200
+           shadow-lg shadow-orange-900/40 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply glass p-5 flex flex-col gap-2;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply w-full h-2 bg-surface-600 rounded-full overflow-hidden;
+  }
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+  }
+
+  /* Section heading */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest text-brand-400/80;
+  }
+}
+
+/* ── Animated grid background ───────────────────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(37, 51, 98, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 51, 98, 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Glow orbs ──────────────────────────────────────────── */
+.glow-orb-blue {
+  background: radial-gradient(ellipse at center, rgba(39,165,249,0.15) 0%, transparent 70%);
+}
+.glow-orb-purple {
+  background: radial-gradient(ellipse at center, rgba(139,92,246,0.12) 0%, transparent 70%);
+}
+
+/* ── Dropzone ──────────────────────────────────────────── */
+.dropzone-active {
+  border-color: rgba(39,165,249,0.8) !important;
+  background: rgba(39,165,249,0.05) !important;
+  box-shadow: 0 0 30px rgba(39,165,249,0.2);
+}
+
+/* ── Image comparison slider ─────────────────────────────  */
+.react-compare-slider-handle {
+  background: linear-gradient(to bottom, #27a5f9, #0f87ee) !important;
+  width: 3px !important;
+}
+.react-compare-slider-handle-button {
+  background: #27a5f9 !important;
+  border: 2px solid white !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 20px rgba(39,165,249,0.5) !important;
+}
+
+/* ── Tab underline ──────────────────────────────────────── */
+.tab-active {
+  color: #27a5f9;
+  border-bottom-color: #27a5f9;
+}
+
+/* ── Number flip animation ──────────────────────────────── */
+@keyframes countUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.count-up { animation: countUp 0.6s ease-out forwards; }
+
+/* ── Spinner ────────────────────────────────────────────── */
+@keyframes spin-ring {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spin-ring {
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #27a5f9;
+  border-right-color: #27a5f9;
+  animation: spin-ring 0.8s linear infinite;
+}
+
+/* ── Toast override ─────────────────────────────────────── */
+.react-hot-toast > div {
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+}
