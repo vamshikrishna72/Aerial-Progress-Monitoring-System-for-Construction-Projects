@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+opencv-python
+scikit-image
+scikit-learn
+numpy
+Pillow
+matplotlib
+scipy
+aiofiles
